@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rusty.society_shopping.booking_orders">
+
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:text="Choose Your Society"
+        android:textAllCaps="true"
+        android:textColor="#000"
+        android:layout_marginBottom="5dp"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:paddingTop="20dp"
+
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Place Your Orders"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:id="@+id/placeorder"
+        android:background="@drawable/roundbutton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Your Pending orders "
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:background="@drawable/roundbutton"
+        android:id="@+id/pendingorder"
+        android:layout_below="@id/placeorder"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="My orders"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:id="@+id/myorderlist"
+        android:background="@drawable/roundbutton"
+        android:layout_below="@id/pendingorder"/>
+
+    </RelativeLayout>
