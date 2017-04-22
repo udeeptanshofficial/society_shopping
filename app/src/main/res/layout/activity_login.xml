@@ -8,21 +8,45 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFF"
-        />
+        android:background="@drawable/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
     <ImageView
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
-        android:layout_above="@+id/top"
-        />
+        android:id="@+id/imageView" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:layout_alignParentBottom="true"
         android:background="#00000000"
-        android:id="@+id/top">
+        android:id="@+id/top"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="Choose Your Society"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:layout_marginBottom="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:paddingTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
@@ -35,7 +59,11 @@
             android:textColorHint="#000"
             android:maxLength="30"
             android:drawablePadding="10dp"
-            android:id="@+id/et_email"/>
+            android:id="@+id/et_email"
+            android:layout_below="@+id/spinner2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
