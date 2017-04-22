@@ -7,12 +7,58 @@
     android:background="@drawable/back"
     tools:context="com.example.rusty.society_shopping.placeorder">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/serial"
-        android:text="S No."
-        android:textStyle="bold"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="4">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/serial"
+            android:text="S No."
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/list"
+            android:text="List"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/serial"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/price"
+            android:text="Price"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/list"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/check"
+            android:text="CheckList"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/price"/>
+        </TableRow>
+    </TableLayout>
+
 
 
 </RelativeLayout>
