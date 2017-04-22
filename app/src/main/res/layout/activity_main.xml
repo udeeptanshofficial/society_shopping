@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bac"
     tools:context="com.example.rusty.society_shopping.MainActivity">
 
     <ImageView
@@ -11,14 +12,15 @@
         android:layout_height="220dp"
         android:id="@+id/logo"
         android:scaleType="centerInside"
-        android:layout_marginBottom="78dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17dp"
+        android:src="@drawable/splashimage1"
+        android:layout_above="@+id/appName"
         android:layout_centerHorizontal="true" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appName"
-        android:text="society shoping"
+        android:text="society shopping"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:layout_centerInParent="true"
