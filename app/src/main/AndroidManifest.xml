@@ -20,7 +20,8 @@
         <activity android:name=".booking_orders" />
         <activity android:name=".placeorder" />
         <activity android:name=".pendingorder" />
-        <activity android:name=".myorders"></activity>
+        <activity android:name=".myorders" />
+        <activity android:name=".admin_task"></activity>
     </application>
 
 </manifest>
