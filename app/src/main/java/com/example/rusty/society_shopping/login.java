@@ -120,7 +120,7 @@ public class login extends AppCompatActivity {
                 else{
                     intent = new Intent(login.this,login.class);
                 }
-                //intent.putExtra("Society_id",society);
+                intent.putExtra("Society_id",society);
                 startActivity(intent);
 
             }

@@ -44,9 +44,7 @@ public class placeorder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_placeorder);
-        Spinner listofdata = (Spinner) findViewById(R.id.listofdata);
         list_additem= (ListView) findViewById(R.id.list_additem);
-
         listofdata = (Spinner) findViewById(R.id.listofdata);
         Intent intent = getIntent();
         respons = intent.getStringExtra("Society_id");
@@ -61,7 +59,7 @@ public class placeorder extends AppCompatActivity {
             public void onResponse(String response) {
                 try{
                     JSONObject obj = new JSONObject(response);
-                    JSONArray jsonArray = obj.getJSONArray("Shop_name");
+                    JSONArray jsonArray = obj.getJSONArray("List");
                     for(int index=0;index<jsonArray.length();index++){
                         ar.add(jsonArray.getJSONObject(index).getString("name"));
                     }
