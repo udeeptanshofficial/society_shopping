@@ -39,6 +39,7 @@ public class login extends AppCompatActivity {
     ArrayAdapter adap;
     String username,password,society;
     JSONObject obj;
+    String respons;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,7 +48,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         OneSignal.startInit(this).init();
         Intent intent  = getIntent();
-        String respons = intent.getStringExtra("Society List");
+         respons = intent.getStringExtra("Society List");
         try{
             obj = new JSONObject(respons);
             JSONArray array = obj.getJSONArray("List");
@@ -89,6 +90,7 @@ public class login extends AppCompatActivity {
             @Override
             public void idsAvailable(String userId, String registrationId) {
                 uid = userId;
+                Log.d("debug", "registrationId:" + uid);
                 if (registrationId != null)
                     Log.d("debug", "registrationId:" + registrationId);
             }
@@ -98,22 +100,27 @@ public class login extends AppCompatActivity {
             public void onResponse(String response) {
                 //Toast.makeText(login.this, response, Toast.LENGTH_SHORT).show();
                 Intent intent;
-               // InitializePref initPref = new InitializePref();
+                InitializePref initPref = new InitializePref();
                 if(response.equals("resident")){
-                   // initPref.loginResident(login.this,username);
+                    initPref.loginResident(login.this,username);
+
                     intent = new Intent(login.this,booking_orders.class);
+                    //intent.putExtra("Society_id",society);
                 }
                 else if (response.equals("shopkeeper")){
-                    //initPref.loginShop(login.this,username);
+                    initPref.loginShop(login.this,username);
                     intent = new Intent(login.this,Vendor.class);
+                    //intent.putExtra("Society_id",society);
                 }
                 else if (response.equals("admin")){
-                    //initPref.loginAdmin(login.this,username);
+                    initPref.loginAdmin(login.this,username);
                     intent = new Intent(login.this,admin_task.class);
+                    //intent.putExtra("Society_id",society);
                 }
                 else{
                     intent = new Intent(login.this,login.class);
                 }
+                //intent.putExtra("Society_id",society);
                 startActivity(intent);
 
             }

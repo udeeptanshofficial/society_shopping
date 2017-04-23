@@ -23,7 +23,8 @@
         android:layout_centerInParent="true"
         android:padding="10dp"
         android:id="@+id/placeorder"
-        android:background="@drawable/roundbutton"/>
+        android:background="@drawable/roundbutton"
+        android:onClick="placeOrder"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +34,8 @@
         android:padding="10dp"
         android:background="@drawable/roundbutton"
         android:id="@+id/pendingorder"
-        android:layout_below="@id/placeorder"/>
+        android:layout_below="@id/placeorder"
+        android:onClick="pendingOrders"/>
 
     <Button
         android:layout_width="match_parent"
@@ -44,6 +46,7 @@
         android:padding="10dp"
         android:id="@+id/myorderlist"
         android:background="@drawable/roundbutton"
-        android:layout_below="@id/pendingorder"/>
+        android:layout_below="@id/pendingorder"
+        android:onClick="completeOrders"/>
 
     </RelativeLayout>
