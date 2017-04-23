@@ -5,31 +5,69 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 public class MainActivity extends AppCompatActivity {
+    int SPLASH_TIME_OUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-         int SPLASH_TIME_OUT = 3000;
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new Handler().postDelayed(new Runnable() {
+        getSocietyList();
 
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
+    }
+    String response;
+    public void getSocietyList(){
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-                Intent login=new Intent(getApplicationContext(), login.class);
-                startActivity(login);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://wplanner.000webhostapp.com/loadSocietyList.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        response=s;
+                        new Handler().postDelayed(new Runnable() {
 
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+                            @Override
+                            public void run() {
+                                // This method will be executed once the timer is over
+                                // Start your app main activity
+                                Intent login=new Intent(getApplicationContext(), login.class);
+                                login.putExtra("Society List",response);
+                                startActivity(login);
+
+                                finish();
+                            }
+                        }, SPLASH_TIME_OUT);
+
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+
+
+                    }
+                }){
+
+
+        };
+
+        //Creating a Request Queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Adding request to the queue
+        requestQueue.add(stringRequest);
+
     }
     }
 
