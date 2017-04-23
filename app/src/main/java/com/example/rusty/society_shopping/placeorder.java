@@ -1,19 +1,16 @@
 package com.example.rusty.society_shopping;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -44,11 +41,17 @@ public class placeorder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_placeorder);
-        Spinner listofdata = (Spinner) findViewById(R.id.listofdata);
         list_additem= (ListView) findViewById(R.id.list_additem);
-
         listofdata = (Spinner) findViewById(R.id.listofdata);
         Intent intent = getIntent();
+        listofdata.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listofdata.getSelectedItemPosition();
+                // Add tey catch code for getting shopid and society id
+                //addproducts(shopid,societyid);
+            }
+        });
         respons = intent.getStringExtra("Society_id");
         setSpinnerAdaptor(respons);
 
@@ -59,6 +62,7 @@ public class placeorder extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, "https://wplanner.000webhostapp.com/user/societyShops.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(placeorder.this, ""+respons, Toast.LENGTH_SHORT).show();
                 try{
                     JSONObject obj = new JSONObject(response);
                     JSONArray jsonArray = obj.getJSONArray("Shop_name");
@@ -88,6 +92,63 @@ public class placeorder extends AppCompatActivity {
         queue.add(request);
 
     }
+    public  void addproducts(final String shopid, final String societyid)
+    {
+
+        final ArrayList<String> shopnames = new ArrayList<>();
+        final ArrayList<String> shopaddresss = new ArrayList<>();
+        StringRequest stringRequest;
+        stringRequest = new StringRequest(Request.Method.POST, "",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("DataBase Response", response);
+                        if (response.equals("fail") == false) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for(int i=0;i<jsonArray.length();i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    shopnames.add(jsonObject.getString("productname"));
+                                    shopaddresss.add(jsonObject.getString("price"));
+                                }
+                                ShoplistAdapter adapter = new ShoplistAdapter(placeorder.this,shopnames,shopaddresss);
+                                list_additem.setAdapter(adapter);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+
+                            }
+
+
+
+
+                        }
+                        else {
+//                            loading.dismiss();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(placeorder.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("societyid",societyid);
+                params.put("shopid",shopid);
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(placeorder.this);
+        requestQueue.add(stringRequest);
+    }
+
 
     }
 

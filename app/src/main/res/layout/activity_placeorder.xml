@@ -27,7 +27,6 @@
         android:id="@+id/listofdata"
         android:layout_width="fill_parent"
         android:paddingTop="10dp"
-        android:onClick="loadlistofitem"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

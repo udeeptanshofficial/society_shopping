@@ -2,18 +2,15 @@ package com.example.rusty.society_shopping;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,6 +74,7 @@ public class login extends AppCompatActivity {
         int position = spn.getSelectedItemPosition();
         try {
             society = obj.getJSONArray("List").getJSONObject(position).getString("societyid");
+            Toast.makeText(this, ""+society, Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -120,7 +119,7 @@ public class login extends AppCompatActivity {
                 else{
                     intent = new Intent(login.this,login.class);
                 }
-                //intent.putExtra("Society_id",society);
+                  intent.putExtra("Society_id",society);
                 startActivity(intent);
 
             }
