@@ -15,17 +15,21 @@ import java.util.List;
 
 public class booking_orders extends AppCompatActivity {
     Intent intent;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_orders);
+        Intent intent = getIntent();
+        id = intent.getStringExtra("Society_id");
 
 
    }
    public void placeOrder(View v){
        intent = new Intent(this,placeorder.class);
+       intent.putExtra("Society_id",id);
        startActivity(intent);
    }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -57,6 +58,7 @@ public class placeorder extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, "https://wplanner.000webhostapp.com/user/societyShops.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("TAG", "onResponse: "+response);
                 try{
                     JSONObject obj = new JSONObject(response);
                     JSONArray jsonArray = obj.getJSONArray("List");
