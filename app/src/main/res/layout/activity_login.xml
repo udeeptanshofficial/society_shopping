@@ -113,7 +113,7 @@
             android:padding="20dp"
             android:id="@+id/myorderlist"
             android:background="@drawable/roundbutton"
-            android:onClick="onClick"
+            android:onClick="login"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/btn_forgotpassword"
             android:layout_alignParentRight="true"

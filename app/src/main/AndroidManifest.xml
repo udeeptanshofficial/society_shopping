@@ -24,6 +24,9 @@
         <activity android:name=".admin_task"></activity>
         <activity android:name=".Vendor" />
         <activity android:name=".Admin"></activity>
+
+
+
     </application>
 
 </manifest>

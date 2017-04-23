@@ -42,20 +42,20 @@ public class placeorder extends AppCompatActivity {
         TableLayout stk = (TableLayout) findViewById(R.id.tablelistofdata);
         TableRow tableRow1 = new TableRow(this);
         TextView tv_serialno = new TextView(this);
-      tv_serialno.setTextColor(Color.WHITE);
+      tv_serialno.setTextColor(Color.BLACK);
         tableRow1.addView(tv_serialno);
 
 
         TextView tv_list = new TextView(this);
-        tv_list.setTextColor(Color.WHITE);
+        tv_list.setTextColor(Color.BLACK);
         tableRow1.addView(tv_list);
 
         TextView tvprice = new TextView(this);
-        tvprice.setTextColor(Color.WHITE);
+        tvprice.setTextColor(Color.BLACK);
        tableRow1.addView(tvprice);
 
         TextView tv_check = new TextView(this);
-        tv_check.setTextColor(Color.WHITE);
+        tv_check.setTextColor(Color.BLACK);
         tableRow1.addView(tv_check);
 
         stk.addView(tableRow1);
@@ -70,20 +70,20 @@ public class placeorder extends AppCompatActivity {
 
 
             TextView tv_list1 = new TextView(this);
-            tv_list1.setText("Product " + i);
+            tv_list1.setText(" " + i);
             tv_list1.setTextColor(Color.BLACK);
             tv_list1.setGravity(Gravity.CENTER);
           tablerow.addView(tv_list1);
 
             TextView  tvprice1 = new TextView(this);
             tvprice1.setText("Rs." + i);
-            tvprice1.setTextColor(Color.WHITE);
+            tvprice1.setTextColor(Color.BLACK);
             tvprice1.setGravity(Gravity.CENTER);
               tablerow.addView( tvprice);
 
             TextView tv_check1 = new TextView(this);
             tv_check1.setText("" + i );
-            tv_check1.setTextColor(Color.WHITE);
+            tv_check1.setTextColor(Color.BLACK);
             tv_check1.setGravity(Gravity.CENTER);
             tablerow.addView(tv_check1);
             stk.addView(tablerow);
