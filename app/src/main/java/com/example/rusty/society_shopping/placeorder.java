@@ -2,11 +2,8 @@ package com.example.rusty.society_shopping;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -47,18 +44,21 @@ public class placeorder extends AppCompatActivity {
         list_additem= (ListView) findViewById(R.id.list_additem);
         listofdata = (Spinner) findViewById(R.id.listofdata);
         Intent intent = getIntent();
-        listofdata.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                listofdata.getSelectedItemPosition();
-                // Add tey catch code for getting shopid and society id
-                //addproducts(shopid,societyid);
-            }
-        });
         respons = intent.getStringExtra("Society_id");
         setSpinnerAdaptor(respons);
 
-        //init();
+        listofdata.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Add your code here
+                //addproducts(shopid,societyid);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
     public void setSpinnerAdaptor(final String respons){
