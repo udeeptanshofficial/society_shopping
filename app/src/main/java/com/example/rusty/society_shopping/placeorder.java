@@ -30,7 +30,10 @@ import java.util.Map;
 
 public class placeorder extends AppCompatActivity {
     ListView list_additem;
-
+    final ArrayList<String> productname = new ArrayList<>();
+    final ArrayList<String> productprice = new ArrayList<>();
+    final ArrayList<String> selectedproductname = new ArrayList<>();
+    final ArrayList<String> selectedproductprice = new ArrayList<>();
     ArrayAdapter adap;
     ArrayList<String> ar = new ArrayList<>();
     String respons; Spinner listofdata;
@@ -48,15 +51,15 @@ public class placeorder extends AppCompatActivity {
         Intent intent = getIntent();
         respons = intent.getStringExtra("Society_id");
         setSpinnerAdaptor(respons);
-        final ArrayList<String> selectedproductname = new ArrayList<>();
-        final ArrayList<String> selectedproductprice = new ArrayList<>();
+
         list_additem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     view.setSelected(true);
                     view.setBackgroundResource(R.color.colorPrimary);
-                Toast.makeText(placeorder.this, ""+position, Toast.LENGTH_SHORT).show();
+                selectedproductname.add(productname.get(position));
+                selectedproductprice.add(productprice.get(position));
             }
         });
 
@@ -93,6 +96,8 @@ public class placeorder extends AppCompatActivity {
                                           JSONObject jsonObject = jsonArray.getJSONObject(i);
                                           shopnames.add(jsonObject.getString("productname"));
                                           shopaddresss.add(jsonObject.getString("price"));
+                                          productname.add(jsonObject.getString("productname"));
+                                          productprice.add(jsonObject.getString("price"));
                                       }
 
                                   }
@@ -147,7 +152,7 @@ public class placeorder extends AppCompatActivity {
         queue.add(request);
 
     }
-    public  void addproducts(final String shopid, final String societyid)
+    /*public  void addproducts(final String shopid, final String societyid)
     {
 
         final ArrayList<String> shopnames = new ArrayList<>();
@@ -179,7 +184,7 @@ public class placeorder extends AppCompatActivity {
 
                         }
                         else {
-//                            loading.dismiss();
+
                         }
                     }
 
@@ -202,65 +207,40 @@ public class placeorder extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(placeorder.this);
         requestQueue.add(stringRequest);
-    }
-
-
-    }
-
-
-
-
-//table work
-   /* public void init() {
-        TableLayout stk = (TableLayout) findViewById(R.id.tablelistofdata);
-        TableRow tableRow1 = new TableRow(this);
-        TextView tv_serialno = new TextView(this);
-      tv_serialno.setTextColor(Color.BLACK);
-        tableRow1.addView(tv_serialno);
-
-
-        TextView tv_list = new TextView(this);
-        tv_list.setTextColor(Color.BLACK);
-        tableRow1.addView(tv_list);
-
-        TextView tvprice = new TextView(this);
-        tvprice.setTextColor(Color.BLACK);
-       tableRow1.addView(tvprice);
-
-        TextView tv_check = new TextView(this);
-        tv_check.setTextColor(Color.BLACK);
-        tableRow1.addView(tv_check);
-
-        stk.addView(tableRow1);
-
-        for (int i = 0; i < 25; i++) {
-            TableRow tablerow = new TableRow(this);
-            TextView tv_serialno1 = new TextView(this);
-            tv_serialno1 .setText("" + i);
-            tv_serialno1.setTextColor(Color.BLACK);
-            tv_serialno1.setGravity(Gravity.CENTER);
-           tableRow1.addView(tv_serialno1);
-
-
-            TextView tv_list1 = new TextView(this);
-            tv_list1.setText(" " + i);
-            tv_list1.setTextColor(Color.BLACK);
-            tv_list1.setGravity(Gravity.CENTER);
-          tablerow.addView(tv_list1);
-
-            TextView  tvprice1 = new TextView(this);
-            tvprice1.setText("Rs." + i);
-            tvprice1.setTextColor(Color.BLACK);
-            tvprice1.setGravity(Gravity.CENTER);
-              tablerow.addView( tvprice);
-
-            TextView tv_check1 = new TextView(this);
-            tv_check1.setText("" + i );
-            tv_check1.setTextColor(Color.BLACK);
-            tv_check1.setGravity(Gravity.CENTER);
-            tablerow.addView(tv_check1);
-            stk.addView(tablerow);
-        }
-
     }*/
+    public void submit(View v)
+    {
+        final JSONArray jsonarrayname = new JSONArray(selectedproductname);
+        final JSONArray jsonarrayprice = new JSONArray(selectedproductprice);
+        StringRequest stringRequest;
+        stringRequest = new StringRequest(Request.Method.POST, "",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("DataBase Response", response);
+                    }
 
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(placeorder.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("jsonarrayname",jsonarrayname.toString());
+                params.put("jsonarrayprice",jsonarrayprice.toString());
+                return params;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(placeorder.this);
+        requestQueue.add(stringRequest);
+
+    }
+
+
+    }

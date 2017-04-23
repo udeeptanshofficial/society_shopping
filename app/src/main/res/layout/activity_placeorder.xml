@@ -43,7 +43,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_order"
         android:text="Order"
-        android:visibility="gone"
         android:onClick="submit"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"/>
