@@ -20,7 +20,13 @@
         <activity android:name=".booking_orders" />
         <activity android:name=".placeorder" />
         <activity android:name=".pendingorder" />
-        <activity android:name=".myorders"></activity>
+        <activity android:name=".myorders" />
+<<<<<<< HEAD
+        <activity android:name=".admin_task"></activity>
+=======
+        <activity android:name=".Vendor" />
+        <activity android:name=".Admin"></activity>
+>>>>>>> e2fe737c0668a936df89ed004e063b58880e64b7
     </application>
 
 </manifest>

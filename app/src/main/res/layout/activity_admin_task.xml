@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rusty.society_shopping.admin_task">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/splashimage1"
+        android:id="@+id/imageView" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add User"
+        android:padding="20dp"
+        android:id="@+id/adduser"
+        android:background="@drawable/roundbutton"
+        android:onClick="adduser"
+        android:layout_marginTop="34dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Vender"
+        android:padding="20dp"
+        android:id="@+id/addvender"
+        android:background="@drawable/roundbutton"
+        android:onClick="addvender"
+        android:layout_alignBaseline="@+id/adduser"
+        android:layout_alignBottom="@+id/adduser"
+        android:layout_alignRight="@+id/removevender"
+        android:layout_alignEnd="@+id/removevender" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove User"
+        android:padding="20dp"
+        android:id="@+id/removeuser"
+        android:background="@drawable/roundbutton"
+        android:onClick="removeuser"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/adduser"
+        android:layout_alignLeft="@+id/adduser"
+        android:layout_alignStart="@+id/adduser" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove User"
+        android:padding="20dp"
+        android:id="@+id/removevender"
+        android:background="@drawable/roundbutton"
+        android:onClick="removevender"
+        android:layout_alignBaseline="@+id/removeuser"
+        android:layout_alignBottom="@+id/removeuser"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp" />
+
+
+</RelativeLayout>
