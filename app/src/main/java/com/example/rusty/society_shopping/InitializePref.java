@@ -14,6 +14,7 @@ public class InitializePref {
     public static final String resident_name = "Resident_name";
     public static final String shop_name = "Shop_name";
     public static final String admin_name = "Admin_name";
+    //public static final String society_id = "Society_id";
     SharedPreferences.Editor editor;
     public void loginResident(Context context,String name){
         this.context = context;
