@@ -15,8 +15,10 @@ public class booking_orders extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_orders);
-        id = getIntent().getStringExtra("Society_id");
-        Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("Society_id");
+
 
 
    }
