@@ -37,6 +37,8 @@ public class placeorder extends AppCompatActivity {
     ArrayAdapter adap;
     ArrayList<String> ar = new ArrayList<>();
     String respons; Spinner listofdata;
+    JSONObject obj;
+    JSONArray jsonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,14 +49,7 @@ public class placeorder extends AppCompatActivity {
         list_additem= (ListView) findViewById(R.id.list_additem);
         listofdata = (Spinner) findViewById(R.id.listofdata);
         Intent intent = getIntent();
-        listofdata.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                listofdata.getSelectedItemPosition();
-                // Add tey catch code for getting shopid and society id
-                //addproducts(shopid,societyid);
-            }
-        });
+
         respons = intent.getStringExtra("Society_id");
         setSpinnerAdaptor(respons);
 
@@ -67,14 +62,51 @@ public class placeorder extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("TAG", "onResponse: "+response);
                 try{
-                    JSONObject obj = new JSONObject(response);
-                    JSONArray jsonArray = obj.getJSONArray("List");
+                    obj = new JSONObject(response);
+                    jsonArray = obj.getJSONArray("List");
                     for(int index=0;index<jsonArray.length();index++){
                         ar.add(jsonArray.getJSONObject(index).getString("name"));
                     }
                 }catch(JSONException e){e.printStackTrace();}
                 adap=new ArrayAdapter(placeorder.this,R.layout.support_simple_spinner_dropdown_item,ar);
                 listofdata.setAdapter(adap);
+                listofdata.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                      try {
+                          final String name = obj.getJSONArray("List").getJSONObject(position).getString("name");
+                          StringRequest request = new StringRequest(Request.Method.POST, "https://wplanner.000webhostapp.com/user/productList.php", new Response.Listener<String>() {
+                              @Override
+                              public void onResponse(String response) {
+                                  //this response will contain product details
+                                  Toast.makeText(placeorder.this, "override data", Toast.LENGTH_SHORT).show();
+                              }
+                          }, new Response.ErrorListener() {
+                              @Override
+                              public void onErrorResponse(VolleyError error) {
+
+                              }
+                          }
+                          ) {
+                              protected Map<String, String> getParams() throws AuthFailureError {
+                                  Map<String, String> map = new HashMap<>();
+                                  map.put("societyid",respons);
+                                  map.put("shopid",name);
+                                  return map;
+                              }
+
+                          };
+                          RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                          queue.add(request);
+                      }catch (JSONException e){}
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+
+                });
             }
         }, new Response.ErrorListener() {
             @Override
