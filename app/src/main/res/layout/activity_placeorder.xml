@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/list_additem"
         android:layout_below="@id/listofdata"
-        android:layout_above="@id/btn_order"
         >
 
     </ListView>
