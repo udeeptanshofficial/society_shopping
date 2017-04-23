@@ -6,14 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 
 public class myorders extends AppCompatActivity implements View.OnClickListener {
     EditText e1,e2,e3,e4,e5;
     CheckBox check;
     Button btn;
+    ListView list_additem;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myorders);
         e1=(EditText)findViewById(R.id.shop);
@@ -21,6 +24,8 @@ public class myorders extends AppCompatActivity implements View.OnClickListener 
         e3=(EditText)findViewById(R.id.total);
         e4=(EditText)findViewById(R.id.address);
         e5=(EditText)findViewById(R.id.pick);
+        list_additem= (ListView) findViewById(R.id.list_additem);
+
 
         check=(CheckBox)findViewById(R.id.check);
         check.setOnClickListener(this);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:background="@drawable/back"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" >
 
 
     <EditText
@@ -29,53 +29,20 @@
         android:textSize="20dp"
         android:layout_below="@id/shop"
         android:hint="Customer name" />
-
-    <TableLayout
-        android:id="@+id/table"
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/list_additem"
         android:layout_below="@id/customer"
-        android:stretchColumns="3">
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/product"
-                android:text="Product"
-                android:textStyle="bold"
-                android:textSize="25dp"/>
+        />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/quantity"
-                android:text="Quantity"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:layout_marginLeft="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/price"
-                android:text="Price"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:layout_marginLeft="15dp"/>
-            </TableRow>
-    </TableLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/total"
         android:hint="Total Price"
-        android:layout_below="@+id/table"
+        android:layout_below="@+id/list_additem"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -114,4 +81,5 @@
         android:layout_marginEnd="38dp"
         android:layout_alignTop="@+id/check" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
