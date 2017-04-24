@@ -109,6 +109,9 @@ public class placeorder extends AppCompatActivity {
                               @Override
                               public void onResponse(String response) {
                                   //this response will contain product details
+
+                                  Toast.makeText(placeorder.this, "response", Toast.LENGTH_SHORT).show();
+
                                   final ArrayList<String> shopnames = new ArrayList<>();
                                   final ArrayList<String> shopaddresss = new ArrayList<>();
                                   try {
@@ -129,6 +132,7 @@ public class placeorder extends AppCompatActivity {
                                   {}
                                   ShoplistAdapter adapter = new ShoplistAdapter(placeorder.this, shopnames, shopaddresss);
                                   list_additem.setAdapter(adapter);
+
                               }
                           }, new Response.ErrorListener() {
                               @Override
