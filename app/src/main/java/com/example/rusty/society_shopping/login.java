@@ -74,7 +74,6 @@ public class login extends AppCompatActivity {
         int position = spn.getSelectedItemPosition();
         try {
             society = obj.getJSONArray("List").getJSONObject(position).getString("societyid");
-            Toast.makeText(this, ""+society, Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
