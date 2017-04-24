@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class Vendor extends AppCompatActivity implements View.OnClickListener {
     Button order,product;
+    String societyid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,12 +17,15 @@ public class Vendor extends AppCompatActivity implements View.OnClickListener {
         order.setOnClickListener(this);
         product=(Button)findViewById(R.id.b2);
         product.setOnClickListener(this);
+        Intent intent = getIntent();
+        societyid = intent.getStringExtra("Society_id");
     }
 
     @Override
     public void onClick(View v)
     {
         Intent shoporder=new Intent(getApplicationContext(),shoporder.class);
+        shoporder.putExtra("Society_id",societyid);
         startActivity(shoporder);
         
     }
