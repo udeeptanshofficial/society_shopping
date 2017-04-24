@@ -79,7 +79,7 @@ public class placeorder extends AppCompatActivity {
                               @Override
                               public void onResponse(String response) {
                                   //this response will contain product details
-                                  Toast.makeText(placeorder.this, "override data", Toast.LENGTH_SHORT).show();
+                                  Toast.makeText(placeorder.this, "response", Toast.LENGTH_SHORT).show();
                               }
                           }, new Response.ErrorListener() {
                               @Override
