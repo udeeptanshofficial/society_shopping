@@ -1,5 +1,6 @@
 package com.example.rusty.society_shopping;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,10 @@ public class Vendor extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
+        Intent shoporder=new Intent(getApplicationContext(),shoporder.class);
+        startActivity(shoporder);
         
     }
 }

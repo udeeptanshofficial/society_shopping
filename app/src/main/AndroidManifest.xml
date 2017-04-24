@@ -21,12 +21,10 @@
         <activity android:name=".placeorder" />
         <activity android:name=".pendingorder" />
         <activity android:name=".myorders" />
-        <activity android:name=".admin_task"></activity>
+        <activity android:name=".admin_task" />
         <activity android:name=".Vendor" />
-        <activity android:name=".Admin"></activity>
-
-
-
+        <activity android:name=".Admin" />
+        <activity android:name=".shoporder"></activity>
     </application>
 
 </manifest>
