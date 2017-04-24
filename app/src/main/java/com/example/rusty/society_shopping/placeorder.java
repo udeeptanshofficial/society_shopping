@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.onesignal.OneSignal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +45,8 @@ public class placeorder extends AppCompatActivity {
     JSONArray jsonArray;
     SharedPreferences pref;
     int count[] = new int[20];
+    String shopplayerid;
+    String Test_message;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -104,6 +107,7 @@ public class placeorder extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                       try {
                           final String name = obj.getJSONArray("List").getJSONObject(position).getString("username");
+                          shopplayerid = obj.getJSONArray("List").getJSONObject(position).getString("playerid");
                           shopid = name;
                           StringRequest request = new StringRequest(Request.Method.POST, "https://wplanner.000webhostapp.com/user/productList.php", new Response.Listener<String>() {
                               @Override
@@ -193,9 +197,25 @@ public class placeorder extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("DataBase Response", response);
-
+                        Test_message = "You have a new order from room no. "+userid;
                         Toast.makeText(placeorder.this, ""+response, Toast.LENGTH_SHORT).show();
                         Toast.makeText(placeorder.this, "Order Successful", Toast.LENGTH_SHORT).show();
+                        try {
+                            OneSignal.postNotification(new JSONObject("{'contents': {'en':'"+Test_message+"'}, 'include_player_ids': ['" + shopplayerid + "']}"),
+                                    new OneSignal.PostNotificationResponseHandler() {
+                                        @Override
+                                        public void onSuccess(JSONObject response) {
+                                            Log.i("OneSignalExample", "postNotification Success: " + response.toString());
+                                        }
+
+                                        @Override
+                                        public void onFailure(JSONObject response) {
+                                            Log.e("OneSignalExample", "postNotification Failure: " + response.toString());
+                                        }
+                                    });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(placeorder.this,booking_orders.class);
                         startActivity(intent);
                         finish();
