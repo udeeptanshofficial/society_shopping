@@ -217,11 +217,12 @@ public class placeorder extends AppCompatActivity {
         final JSONArray jsonarrayname = new JSONArray(selectedproductname);
         final JSONArray jsonarrayprice = new JSONArray(selectedproductprice);
         StringRequest stringRequest;
-        stringRequest = new StringRequest(Request.Method.POST, "",
+        stringRequest = new StringRequest(Request.Method.POST, "https://wplanner.000webhostapp.com/user/placeorder.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("DataBase Response", response);
+                        Toast.makeText(placeorder.this, "re"+response, Toast.LENGTH_SHORT).show();
                     }
 
                 },
