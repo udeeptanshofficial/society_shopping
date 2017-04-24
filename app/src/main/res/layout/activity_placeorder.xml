@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
     tools:context="com.example.rusty.society_shopping.placeorder">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -37,13 +35,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list_additem"
+        android:focusable="true"
         android:layout_below="@id/listofdata">
-</ListView>
+  </ListView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_order"
         android:text="Order"
+        android:onClick="submit"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"/>
 
